@@ -6,11 +6,6 @@ public final class TextUtils {
         // utility class
     }
 
-    /**
-     * Приводит имя пользователя к нормализованному виду:
-     * - убирает пробелы по краям
-     * - переводит в нижний регистр
-     */
     public static String normalizeUsername(String username) {
         if (username == null) {
             throw new IllegalArgumentException("username cannot be null");
@@ -18,12 +13,6 @@ public final class TextUtils {
         return username.trim().toLowerCase();
     }
 
-    /**
-     * Простейшая проверка email:
-     * - наличие символа '@'
-     * - наличие точки после '@'
-     * - непустое имя до '@'
-     */
     public static boolean isValidEmail(String email) {
         if (email == null) {
             return false;
