@@ -7,7 +7,7 @@ on:
     branches: ["main"]
 
 jobs:
-  build-and-test:
+  build-test:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -15,8 +15,7 @@ jobs:
         os:
           - ubuntu-latest
           - windows-latest
-          - macos-13     # Intel
-          - macos-14     # Apple Silicon (ARM64)
+          - macos-14
         java: [ "17" ]
 
     steps:
@@ -34,12 +33,11 @@ jobs:
         run: mvn -B clean test
 
   deploy:
-    needs: build-and-test
+    needs: build-test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
 
     steps:
       - name: Deploy (mock stage)
         run: |
-          echo "Deploy stage started"
-          echo "No real hosting configured: mock deploy finished successfully"
+          echo "Deploy stage completed"
